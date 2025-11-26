@@ -56,6 +56,21 @@ File / Folder	Description
 • static/style.css	Styling for the webpage
 • .vscode/	VS Code workspace configuration
 • README.txt	Documentation file
+Project Structure:
+AL_ML_PROJECT/
+│
+├── app.py
+├── spam_model.pkl
+├── tfidf_vectorizer.pkl
+│
+├── static/
+│   └── style.css
+│
+├── templates/
+│   └── index.html
+│
+└── README.txt
+
 
 
 5. Model Comparison (ANN vs Logistic Regression)
