@@ -1,173 +1,109 @@
-SMS Spam Detection Using Multiple Machine Learning Models
+SMS Spam Detection – AI/ML Project
 
-This project is an AI/ML-based SMS Spam Detection System that classifies SMS messages as Spam or Not Spam (Ham).
-The project includes training, evaluating, and comparing multiple machine learning algorithms to identify the best-performing model for real-world spam filtering.
+This project focuses on detecting spam vs. ham (non-spam) SMS messages using Machine Learning (ML) and Natural Language Processing (NLP) techniques.
+A trained model and a simple Flask-based web interface are included to allow users to test SMS messages in real-time.
 
-🗃️ Dataset: SMS Spam Collection Dataset
+1. Project Overview
 
-The dataset used is the SMS Spam Collection Dataset, originally from the UCI Machine Learning Repository, and available via Kaggle.
+Analyse SMS text messages
+Clean and preprocess unstructured text data
+Convert text into numerical representation using TF-IDF Vectorizer
 
-Dataset Details
+Train and compare multiple ML models:
+• Logistic Regression
+• Linear Regression (for comparison)
+• Random Forest
+• Artificial Neural Network (ANN)
 
-Total Messages: 5,574
+Evaluate model performance
+Build a simple web interface for testing
+Deployable Flask backend
 
-Categories:
+2. Dataset Information
 
-ham → legitimate messages
+This project uses the publicly available SMS Spam Collection Dataset.
+Dataset URL (Kaggle):
+https://www.kaggle.com/datasets/uciml/sms-spam-collection-dataset
 
-spam → unsolicited / promotional / phishing SMS
-
+Dataset Details:
+Total messages: 5574
+Labels:
+• ham – legitimate SMS
+• spam – fraudulent / promotional SMS
 Columns:
+• label – ham/spam
+• message – SMS text
+Dataset is moderately imbalanced (more ham than spam)
+Widely used benchmark for spam detection and NLP research
 
-label – spam/ham
+3. Technologies Used
+Python
+NumPy
+Pandas
+Scikit-learn
+NLTK
+Flask
+HTML / CSS
+Jupyter Notebook or Google Colab
 
-message – content of the SMS
-
-Class Distribution: imbalanced (ham > spam)
-
-Sources:
-
-Ham messages from volunteers' personal SMS collections
-
-Spam messages from spam reports, forums, and online archives
-
-Common Use Case: research in NLP, spam filtering, text classification
-
-🚀 Features of This Project
-
-✔️ Trains multiple algorithms and compares them
-✔️ Uses TF-IDF for text vectorization
-✔️ Includes complete preprocessing pipeline (cleaning, tokenization, stopwords removal)
-✔️ Exports the best-performing model as:
-
-spam_model.pkl
-
-tfidf_vectorizer.pkl
-✔️ Can be integrated into:
-
-Flask / Django Web App
-
-FastAPI backend
-
-Desktop application
-
-Mobile app API
-
-🧠 Machine Learning Models Used
-
-The following algorithms were trained and evaluated:
-
-Logistic Regression
-
-Linear Regression (adapted for classification analysis)
-
-Random Forest Classifier
-
-Artificial Neural Network (ANN)
-
-Naive Bayes (optional)
-
-Support Vector Machine (optional)
-
-Each model was compared using:
-
-Accuracy
-
-Precision
-
-Recall
-
-F1 Score
-
-Confusion Matrix
-Downloading Dataset in Google Colab
-# Install dependencies
-!pip install kaggle pandas numpy scikit-learn nltk --quiet
-
-# Upload kaggle.json
-from google.colab import files
-uploaded = files.upload()
-
-# Set Kaggle credentials
-!mkdir -p ~/.kaggle
-!mv kaggle.json ~/.kaggle/
-!chmod 600 ~/.kaggle/kaggle.json
-
-# Download dataset
-!kaggle datasets download -d uciml/sms-spam-collection-dataset
-
-# Unzip
-!unzip -q sms-spam-collection-dataset.zip -d sms_spam_data
-
-🧼 Data Preprocessing Steps
-
-Convert all text to lowercase
-
-Remove URLs, punctuation, symbols
-
-Remove extra spaces
-
-Remove stopwords
-
-Apply TF-IDF vectorization
-
-🏗️ Project Structure
-├── models/
-│   ├── logistic_regression.pkl
-│   ├── random_forest.pkl
-│   ├── ann_model.pkl
-│   └── comparison_results.csv
+4. Files Included
+File / Folder	Description
+app.py	Flask backend that loads the model & vectorizer and predicts spam/ham
+spam_model.pkl	Saved best performing ML model
+tfidf_vectorizer.pkl	TF-IDF vectorizer used to preprocess text
+templates/index.html	Frontend webpage for SMS input
+static/style.css	Styling for the webpage
+.vscode/	VS Code workspace configuration
+README.txt	Documentation file
+Project Structure:
+AL_ML_PROJECT/
+│
+├── app.py
 ├── spam_model.pkl
 ├── tfidf_vectorizer.pkl
-├── app.py (optional web interface)
-├── notebook.ipynb (training code)
-├── README.md
-└── requirements.txt
+│
+├── static/
+│   └── style.css
+│
+├── templates/
+│   └── index.html
+│
+└── README.txt
 
-📌 How to Use the Model
-import joblib
+5. Model Comparison (ANN vs Logistic Regression)
+A sample SMS was used to compare model performance:
 
-model = joblib.load("spam_model.pkl")
-vectorizer = joblib.load("tfidf_vectorizer.pkl")
+Sample Input:
+"Congratulations! You have won a free lottery ticket. Click the link to claim your prize."
+Results:
+Logistic Regression: Detected as Spam (moderate confidence)
+ANN: Detected as Spam with higher accuracy and confidence
+Conclusion:
+ANN performs better due to its ability to learn non-linear patterns in text data.
 
-msg = ["Congratulations! You have won a prize."]
-msg_tfidf = vectorizer.transform(msg)
+6. How to Run This Project
+Step 1: Install requirements
+pip install flask sklearn pandas numpy nltk
+Step 2: Run the Flask application
+python app.py
+Step 3: Open Browser
+Go to:
+http://127.0.0.1:5000
+Step 4: Enter SMS text and get prediction
+The interface will show either:
+“Spam”
+“Ham” (not spam)
 
-prediction = model.predict(msg_tfidf)
-print(prediction)
+7. Future Improvements
 
+Add deep learning (LSTM/GRU models)
+Build a full UI/UX enhanced frontend
+Deploy on Render / Railway / AWS
+Add multi-language spam detection
+Add SMS sender metadata analysis
 
-Output:
-['spam']
-
-🔧 Technologies Used
-
-Python
-
-Scikit-learn
-
-Pandas / NumPy
-
-NLTK
-
-Joblib
-
-Kaggle API
-
-📈 Future Improvements
-
-Integrate deep learning (LSTM, GRU models)
-
-Build full web interface
-
-Deploy on Render/Heroku
-
-Add live API endpoint
-
-🙌 Acknowledgements
-
+8. Acknowledgements
+Kaggle Dataset: SMS Spam Collection
 UCI Machine Learning Repository
-
-Kaggle Dataset Contributors
-
-scikit-learn & NLTK communities
+Scikit-learn and NLTK communities
+Flask framework
