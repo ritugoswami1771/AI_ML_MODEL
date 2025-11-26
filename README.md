@@ -47,28 +47,16 @@ HTML / CSS
 Jupyter Notebook or Google Colab
 
 4. Files Included
+
 File / Folder	Description
-app.py	Flask backend that loads the model & vectorizer and predicts spam/ham
-spam_model.pkl	Saved best performing ML model
-tfidf_vectorizer.pkl	TF-IDF vectorizer used to preprocess text
-templates/index.html	Frontend webpage for SMS input
-static/style.css	Styling for the webpage
-.vscode/	VS Code workspace configuration
-README.txt	Documentation file
-Project Structure:
-AL_ML_PROJECT/
-│
-├── app.py
-├── spam_model.pkl
-├── tfidf_vectorizer.pkl
-│
-├── static/
-│   └── style.css
-│
-├── templates/
-│   └── index.html
-│
-└── README.txt
+• app.py	Flask backend that loads the model & vectorizer and predicts spam/ham
+• spam_model.pkl	Saved best performing ML model
+• tfidf_vectorizer.pkl	TF-IDF vectorizer used to preprocess text
+• templates/index.html	Frontend webpage for SMS input
+• static/style.css	Styling for the webpage
+• .vscode/	VS Code workspace configuration
+• README.txt	Documentation file
+
 
 5. Model Comparison (ANN vs Logistic Regression)
 A sample SMS was used to compare model performance:
